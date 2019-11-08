@@ -62,7 +62,6 @@ public class HomeFragment extends Fragment {
                 Drinks drinks = response.body();
                 for (Drink d : drinks.getDrinks()){
                     String content="";
-                    content+= "ID: "+d.getIdDrink()+"\n";
                     content+="Drink name :"+d.getStrDrink()+"\n";
                     content+="Instructions: "+d.getStrInstructions()+"\n\n";
                     textView.append(content);
