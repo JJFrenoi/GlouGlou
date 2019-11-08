@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -26,16 +25,16 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class DashboardFragment extends Fragment {
+public class SearchFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
+    private SearchViewModel dashboardViewModel;
     public static final String BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1/";
     public static Retrofit retrofit = null;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         dashboardViewModel =
-                ViewModelProviders.of(this).get(DashboardViewModel.class);
+                ViewModelProviders.of(this).get(SearchViewModel.class);
         View root = inflater.inflate(R.layout.fragment_research, container, false);
         final TextView textView = root.findViewById(R.id.text_research);
         dashboardViewModel.getText().observe(this, new Observer<String>() {
