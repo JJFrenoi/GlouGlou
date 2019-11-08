@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -16,6 +17,7 @@ import com.example.glouglou.R;
 import com.example.glouglou.ui.pojo.Drink;
 import com.example.glouglou.ui.pojo.Drinks;
 import com.example.glouglou.ui.pojo.Thecocktaildb_Api;
+import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,6 +36,7 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+        final ImageView imageView = root.findViewById(R.id.image);
         final TextView textView = root.findViewById(R.id.text_home);
         homeViewModel.getText().observe(this, new Observer<String>() {
             @Override
@@ -63,6 +66,7 @@ public class HomeFragment extends Fragment {
                     content+="Drink name :"+d.getStrDrink()+"\n";
                     content+="Instructions: "+d.getStrInstructions()+"\n\n";
                     textView.append(content);
+                    Picasso.get().load(d.getStrDrinkThumb()).into(imageView);
                 }
             }
 
