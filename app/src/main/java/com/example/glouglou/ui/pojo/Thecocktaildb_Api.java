@@ -14,4 +14,6 @@ public interface Thecocktaildb_Api  {
     Call<Drinks> getDrinksByFirstLetter(@Query("f") String l );
     @GET("filter.php")
     Call<Drinks>  getDrinksByIngredientName(@Query("i") String i );
+    @GET("random.php")
+    Call<Drinks> random();
 }
