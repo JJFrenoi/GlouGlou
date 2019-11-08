@@ -48,7 +48,7 @@ public class HomeFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         Thecocktaildb_Api thecocktaildb_api = retrofit.create(Thecocktaildb_Api.class);
-        Call<Drinks> call = thecocktaildb_api.getDrinks();
+        Call<Drinks> call = thecocktaildb_api.getDrinksByIngredientName("vodka");
         call.enqueue(new Callback<Drinks>() {
             @Override
             public void onResponse(Call<Drinks> call, Response<Drinks> response) {
@@ -61,6 +61,7 @@ public class HomeFragment extends Fragment {
                     String content="";
                     content+= "ID: "+d.getIdDrink()+"\n";
                     content+="Drink name :"+d.getStrDrink()+"\n";
+                    content+="Instructions: "+d.getStrInstructions()+"\n\n";
                     textView.append(content);
                 }
 

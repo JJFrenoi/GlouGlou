@@ -6,8 +6,12 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface Thecocktaildb_Api  {
-    @GET("filter.php?c=Cocktail")
-    Call<Drinks> getDrinks();
+    @GET("search.php")
+    Call<Drinks> getDrinksByFirstLetter(@Query("f") String l );
+    @GET("filter.php")
+    Call<Drinks>  getDrinksByIngredientName(@Query("i") String i );
 }
