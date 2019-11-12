@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.glouglou.R;
 import com.example.glouglou.ui.pojo.Drink;
 import com.example.glouglou.ui.pojo.Drinks;
+import com.squareup.picasso.Picasso;
 
 public class Adapter_research extends RecyclerView.Adapter<Adapter_research.MySearchHolder> {
     private Drinks mDataset;
@@ -24,15 +25,15 @@ public class Adapter_research extends RecyclerView.Adapter<Adapter_research.MySe
     public static class MySearchHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView textName;
-        public TextView textInstrution;
+        public TextView idDrink;
         //public Button btnDetails;
-       // public ImageView imageView;
+        public ImageView imageView;
         public MySearchHolder(View v) {
             super(v);
             textName = (TextView) v.findViewById(R.id.drink_name);
-            textInstrution = (TextView) v.findViewById(R.id.drink_id);
+            idDrink = (TextView) v.findViewById(R.id.drink_id);
            // btnDetails = (Button) v.findViewById(R.id.message_button);
-           // imageView = (ImageView) v.findViewById(R.id.imageView);
+            imageView = (ImageView) v.findViewById(R.id.imageView);
         }
     }
 
@@ -60,8 +61,9 @@ public class Adapter_research extends RecyclerView.Adapter<Adapter_research.MySe
         Drink drink = mDataset.getDrinks().get(position);
         TextView textName = holder.textName;
         textName.setText(drink.getStrDrink());
-        TextView textInstruction = holder.textInstrution;
-        textInstruction.setText(drink.getStrInstructions());
+        TextView idDrink = holder.idDrink;
+        idDrink.setText(drink.getIdDrink());
+        Picasso.get().load(drink.getStrDrinkThumb()).into(holder.imageView);
 
 
     }
