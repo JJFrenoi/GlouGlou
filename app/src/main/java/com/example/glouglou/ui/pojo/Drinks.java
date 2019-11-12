@@ -30,4 +30,7 @@ public class Drinks {
     public void setDrinks(List<Drink> drinks) {
         this.drinks = drinks;
     }
+    public void addAll(List<Drink> drinks){
+        this.drinks.addAll(drinks);
+    }
 }
