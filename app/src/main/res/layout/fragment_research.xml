@@ -15,13 +15,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <EditText
+        android:id="@+id/plain_text_input"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:inputType=
+            "textCapSentences|textAutoCorrect"
+        android:hint="@string/enter_your_search_here"
+        android:imeOptions="actionDone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_research"/>
+        <requestFocus />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_research"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_research"
+        app:layout_constraintTop_toBottomOf="@id/plain_text_input"
         />
 
 
