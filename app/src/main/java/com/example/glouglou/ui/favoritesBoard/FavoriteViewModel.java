@@ -1,4 +1,4 @@
-package com.example.glouglou.ui.notifications;
+package com.example.glouglou.ui.favoritesBoard;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

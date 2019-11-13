@@ -1,4 +1,4 @@
-package com.example.glouglou.ui.dashboard;
+package com.example.glouglou.ui.searchBoad;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

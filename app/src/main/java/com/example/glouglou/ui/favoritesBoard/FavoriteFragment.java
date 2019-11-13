@@ -1,4 +1,4 @@
-package com.example.glouglou.ui.notifications;
+package com.example.glouglou.ui.favoritesBoard;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

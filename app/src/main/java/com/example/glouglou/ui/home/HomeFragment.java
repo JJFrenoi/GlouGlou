@@ -17,6 +17,7 @@ import com.example.glouglou.R;
 import com.example.glouglou.ui.pojo.Drink;
 import com.example.glouglou.ui.pojo.Drinks;
 import com.example.glouglou.ui.pojo.Thecocktaildb_Api;
+import com.example.glouglou.ui.retrofit.RetrofitHelper;
 import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
@@ -45,13 +46,8 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        Thecocktaildb_Api thecocktaildb_api = retrofit.create(Thecocktaildb_Api.class);
-        Call<Drinks> call = thecocktaildb_api.random();
+        RetrofitHelper retrofitHelper = new RetrofitHelper();
+        Call<Drinks> call = retrofitHelper.getCall();
         call.enqueue((new Callback<Drinks>() {
             @Override
             public void onResponse(Call<Drinks> call, Response<Drinks> response) {
