@@ -12,12 +12,16 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.glouglou.MainActivity;
 import com.example.glouglou.R;
 import com.example.glouglou.ui.pojo.Drink;
 import com.example.glouglou.ui.pojo.Drinks;
 import com.example.glouglou.ui.pojo.Thecocktaildb_Api;
 import com.example.glouglou.ui.retrofit.RetrofitHelper;
+import com.example.glouglou.ui.searchBoad.Adapter_research;
 import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
@@ -29,6 +33,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
@@ -44,8 +51,12 @@ public class HomeFragment extends Fragment {
                 textView.setText(s);
             }
         });
+        recyclerView = (RecyclerView) root.findViewById(R.id.list_ingredients);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new GridLayoutManager(MainActivity.getContext(),2);
+        recyclerView.setLayoutManager(layoutManager);
 
-        RetrofitHelper retrofitHelper = new RetrofitHelper();
+        final RetrofitHelper retrofitHelper = new RetrofitHelper();
         Call<Drinks> call = retrofitHelper.getCall();
         call.enqueue((new Callback<Drinks>() {
             @Override
@@ -59,6 +70,8 @@ public class HomeFragment extends Fragment {
                 text_glass.setText(drinks.getDrinks().get(0).getStrGlass());
                 text_instruction.setText(drinks.getDrinks().get(0).getStrInstructions());
                 Picasso.get().load(drinks.getDrinks().get(0).getStrDrinkThumb()).into(imageView);
+                mAdapter = new Adapter_home(retrofitHelper.getListofIngredient(drinks));
+                recyclerView.setAdapter(mAdapter);
 
             }
 

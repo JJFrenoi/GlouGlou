@@ -1,7 +1,9 @@
 package com.example.glouglou.ui.retrofit;
+import com.example.glouglou.ui.pojo.Drink;
 import com.example.glouglou.ui.pojo.Drinks;
 import com.example.glouglou.ui.pojo.Thecocktaildb_Api;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -142,6 +144,51 @@ public class RetrofitHelper {
             call = thecocktaildb_api.getCocktailByName(s);
         }
 
+    }
+    public List<Ingredients> getListofIngredient(Drinks drinks){
+        List<Ingredients> listofIngredient = new ArrayList<>();
+        if (drinks.getDrinks().get(0).getStrIngredient1() != null && drinks.getDrinks().get(0).getStrMeasure1() != null){
+            Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient1(),drinks.getDrinks().get(0).getStrMeasure1());
+            listofIngredient.add(i);
+        }if (drinks.getDrinks().get(0).getStrIngredient2() != null && drinks.getDrinks().get(0).getStrMeasure2() != null){
+            Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient2(),drinks.getDrinks().get(0).getStrMeasure2());
+            listofIngredient.add(i);
+        }if (drinks.getDrinks().get(0).getStrIngredient3() != null && drinks.getDrinks().get(0).getStrMeasure3() != null){
+            Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient3(),drinks.getDrinks().get(0).getStrMeasure3());
+            listofIngredient.add(i);
+        }if (drinks.getDrinks().get(0).getStrIngredient4() != null && drinks.getDrinks().get(0).getStrMeasure4() != null){
+            Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient4(),drinks.getDrinks().get(0).getStrMeasure4());
+            listofIngredient.add(i);
+        }if (drinks.getDrinks().get(0).getStrIngredient5() != null && drinks.getDrinks().get(0).getStrMeasure5() != null){
+            Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient5(),drinks.getDrinks().get(0).getStrMeasure5());
+            listofIngredient.add(i);
+        }if (drinks.getDrinks().get(0).getStrIngredient6() != null && drinks.getDrinks().get(0).getStrMeasure6() != null){
+            Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient6(),drinks.getDrinks().get(0).getStrMeasure6());
+            listofIngredient.add(i);
+        }if (drinks.getDrinks().get(0).getStrIngredient7() != null && drinks.getDrinks().get(0).getStrMeasure7() != null){
+            Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient7(),drinks.getDrinks().get(0).getStrMeasure7());
+            listofIngredient.add(i);
+        }if (drinks.getDrinks().get(0).getStrIngredient8() != null && drinks.getDrinks().get(0).getStrMeasure8() != null){
+            Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient8(),drinks.getDrinks().get(0).getStrMeasure8());
+            listofIngredient.add(i);
+        }if (drinks.getDrinks().get(0).getStrIngredient9() != null && drinks.getDrinks().get(0).getStrMeasure9() != null){
+            Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient9(),drinks.getDrinks().get(0).getStrMeasure9());
+            listofIngredient.add(i);
+        }if (drinks.getDrinks().get(0).getStrIngredient10() != null && drinks.getDrinks().get(0).getStrMeasure10() != null){
+            Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient10(),drinks.getDrinks().get(0).getStrMeasure10());
+            listofIngredient.add(i);
+        }if (drinks.getDrinks().get(0).getStrIngredient11() != null && drinks.getDrinks().get(0).getStrMeasure11() != null){
+            Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient11(),drinks.getDrinks().get(0).getStrMeasure11());
+            listofIngredient.add(i);
+        }if (drinks.getDrinks().get(0).getStrIngredient12() != null && drinks.getDrinks().get(0).getStrMeasure12() != null){
+            Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient12(),drinks.getDrinks().get(0).getStrMeasure12());
+            listofIngredient.add(i);
+        }if (drinks.getDrinks().get(0).getStrIngredient13() != null && drinks.getDrinks().get(0).getStrMeasure13() != null){
+            Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient13(),drinks.getDrinks().get(0).getStrMeasure13());
+            listofIngredient.add(i);
+        }
+
+        return listofIngredient;
     }
 
     public static List<String> getListIngredient() {
