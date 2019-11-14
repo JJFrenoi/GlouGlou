@@ -44,26 +44,27 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toTopOf="@id/text_instruction"
             app:layout_constraintTop_toBottomOf="@+id/text_home" />
+
         <TextView
             android:id="@+id/text_instruction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/textview"
-            android:textSize="20sp"
             android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/list_ingredients"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/list_ingredients"
             app:layout_constraintTop_toBottomOf="@+id/text_glass" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_ingredients"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="57dp"
+            android:layout_height="246dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_instruction"/>
+            app:layout_constraintTop_toBottomOf="@+id/text_instruction" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
