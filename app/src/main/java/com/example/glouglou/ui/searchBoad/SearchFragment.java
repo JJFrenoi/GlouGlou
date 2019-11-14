@@ -37,8 +37,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class SearchFragment extends Fragment {
-    public static final String BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1/";
-    public static Retrofit retrofit = null;
     private SearchViewModel searchViewModel;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;

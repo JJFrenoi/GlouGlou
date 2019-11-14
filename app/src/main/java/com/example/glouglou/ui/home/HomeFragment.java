@@ -29,9 +29,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-    public static final String BASE_URL ="https://www.thecocktaildb.com/api/json/v1/1/";
-    public static Retrofit retrofit = null;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
@@ -39,6 +36,8 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         final ImageView imageView = root.findViewById(R.id.image);
         final TextView textView = root.findViewById(R.id.text_home);
+        final TextView text_glass = root.findViewById(R.id.text_glass);
+        final TextView text_instruction = root.findViewById(R.id.text_instruction);
         homeViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
@@ -56,13 +55,11 @@ public class HomeFragment extends Fragment {
                     return;
                 }
                 Drinks drinks = response.body();
-                for (Drink d : drinks.getDrinks()){
-                    String content="";
-                    content+="Drink name :"+d.getStrDrink()+"\n";
-                    content+="Instructions: "+d.getStrInstructions()+"\n\n";
-                    textView.append(content);
-                    Picasso.get().load(d.getStrDrinkThumb()).into(imageView);
-                }
+                textView.setText(drinks.getDrinks().get(0).getStrDrink());
+                text_glass.setText(drinks.getDrinks().get(0).getStrGlass());
+                text_instruction.setText(drinks.getDrinks().get(0).getStrInstructions());
+                Picasso.get().load(drinks.getDrinks().get(0).getStrDrinkThumb()).into(imageView);
+
             }
 
             @Override
