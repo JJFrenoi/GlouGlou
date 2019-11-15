@@ -55,9 +55,9 @@ public class Adapter_home extends RecyclerView.Adapter<Adapter_home.MySearchHold
         // - replace the contents of the view with that element
         Ingredients i = mDataset.get(position);
         TextView text_ingredient = holder.text_ingredient;
-        text_ingredient.setText(i.ingredient);
+        text_ingredient.setText(i.getIngredient());
         TextView mesure = holder.mesure;
-        mesure.setText(i.mesure);
+        mesure.setText(i.getMesure());
 
 
     }

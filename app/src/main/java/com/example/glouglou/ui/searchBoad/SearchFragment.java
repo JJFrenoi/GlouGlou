@@ -74,14 +74,17 @@ public class SearchFragment extends Fragment {
                                 textView.setText(response.code());
                                 return;
                             }
-                            Drinks drinks = response.body();
-                            mAdapter = new Adapter_research(drinks);
-                            recyclerView.setAdapter(mAdapter);
+                            else {
+                                Drinks drinks = response.body();
+                                mAdapter = new Adapter_research(drinks);
+                                recyclerView.setAdapter(mAdapter);
+
+                            }
+
 
 
                         }
 
-                        @SuppressLint("SetTextI18n")
                         @Override
                         public void onFailure(Call<Drinks> call, Throwable t) {
                             textView.setText("Can't Find a cocktail with this ingredient "+ v.getText().toString());

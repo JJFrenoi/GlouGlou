@@ -56,6 +56,7 @@ public class HomeFragment extends Fragment {
         layoutManager = new GridLayoutManager(MainActivity.getContext(),2);
         recyclerView.setLayoutManager(layoutManager);
 
+
         final RetrofitHelper retrofitHelper = new RetrofitHelper();
         Call<Drinks> call = retrofitHelper.getCall();
         call.enqueue((new Callback<Drinks>() {

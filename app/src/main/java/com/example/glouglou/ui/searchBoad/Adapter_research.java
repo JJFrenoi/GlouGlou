@@ -73,7 +73,13 @@ public class Adapter_research extends RecyclerView.Adapter<Adapter_research.MySe
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataset.getDrinks().size();
+        try{
+            return mDataset.getDrinks().size();
+        }
+        catch (NullPointerException e){
+            return 0;
+        }
+
     }
 }
 

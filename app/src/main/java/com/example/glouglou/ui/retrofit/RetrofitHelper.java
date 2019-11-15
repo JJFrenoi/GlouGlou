@@ -150,23 +150,45 @@ public class RetrofitHelper {
         if (drinks.getDrinks().get(0).getStrIngredient1() != null && drinks.getDrinks().get(0).getStrMeasure1() != null){
             Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient1(),drinks.getDrinks().get(0).getStrMeasure1());
             listofIngredient.add(i);
-        }if (drinks.getDrinks().get(0).getStrIngredient2() != null && drinks.getDrinks().get(0).getStrMeasure2() != null){
+        }else if (drinks.getDrinks().get(0).getStrIngredient1() != null){
+            Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient1());
+            listofIngredient.add(i);
+        }
+        if (drinks.getDrinks().get(0).getStrIngredient2() != null && drinks.getDrinks().get(0).getStrMeasure2() != null){
             Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient2(),drinks.getDrinks().get(0).getStrMeasure2());
+            listofIngredient.add(i);
+        }else if (drinks.getDrinks().get(0).getStrIngredient2() != null){
+            Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient2());
             listofIngredient.add(i);
         }if (drinks.getDrinks().get(0).getStrIngredient3() != null && drinks.getDrinks().get(0).getStrMeasure3() != null){
             Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient3(),drinks.getDrinks().get(0).getStrMeasure3());
             listofIngredient.add(i);
+        }else if (drinks.getDrinks().get(0).getStrIngredient3() != null){
+            Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient3());
+            listofIngredient.add(i);
         }if (drinks.getDrinks().get(0).getStrIngredient4() != null && drinks.getDrinks().get(0).getStrMeasure4() != null){
             Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient4(),drinks.getDrinks().get(0).getStrMeasure4());
+            listofIngredient.add(i);
+        }else if (drinks.getDrinks().get(0).getStrIngredient4() != null){
+            Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient4());
             listofIngredient.add(i);
         }if (drinks.getDrinks().get(0).getStrIngredient5() != null && drinks.getDrinks().get(0).getStrMeasure5() != null){
             Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient5(),drinks.getDrinks().get(0).getStrMeasure5());
             listofIngredient.add(i);
+        }else if (drinks.getDrinks().get(0).getStrIngredient5() != null){
+            Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient5());
+            listofIngredient.add(i);
         }if (drinks.getDrinks().get(0).getStrIngredient6() != null && drinks.getDrinks().get(0).getStrMeasure6() != null){
             Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient6(),drinks.getDrinks().get(0).getStrMeasure6());
             listofIngredient.add(i);
+        }else if (drinks.getDrinks().get(0).getStrIngredient6() != null){
+            Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient6());
+            listofIngredient.add(i);
         }if (drinks.getDrinks().get(0).getStrIngredient7() != null && drinks.getDrinks().get(0).getStrMeasure7() != null){
             Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient7(),drinks.getDrinks().get(0).getStrMeasure7());
+            listofIngredient.add(i);
+        }else if (drinks.getDrinks().get(0).getStrIngredient7() != null){
+            Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient7());
             listofIngredient.add(i);
         }if (drinks.getDrinks().get(0).getStrIngredient8() != null && drinks.getDrinks().get(0).getStrMeasure8() != null){
             Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient8(),drinks.getDrinks().get(0).getStrMeasure8());
