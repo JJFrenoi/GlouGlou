@@ -58,7 +58,7 @@ public class HomeFragment extends Fragment {
 
 
         final RetrofitHelper retrofitHelper = new RetrofitHelper();
-        Call<Drinks> call = retrofitHelper.getCall();
+        final Call<Drinks> call = retrofitHelper.getCall();
         call.enqueue((new Callback<Drinks>() {
             @Override
             public void onResponse(Call<Drinks> call, Response<Drinks> response) {

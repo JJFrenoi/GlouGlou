@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.glouglou.MainActivity;
 import com.example.glouglou.R;
+import com.example.glouglou.ui.pojo.Drink;
 import com.example.glouglou.ui.pojo.Drinks;
 import com.example.glouglou.ui.pojo.Thecocktaildb_Api;
 import com.example.glouglou.ui.retrofit.RetrofitHelper;
@@ -42,6 +43,7 @@ public class SearchFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private View root ;
+    private Drinks drinks ;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -60,37 +62,17 @@ public class SearchFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         layoutManager = new GridLayoutManager(MainActivity.getContext(),3);
         recyclerView.setLayoutManager(layoutManager);
+        RetrofitHelper retrofitHelper = new RetrofitHelper("a");
+        Call<Drinks> call = retrofitHelper.getCall();
+        stepUpDrinks(call);
         EditText etValue = (EditText) root.findViewById(R.id.plain_text_input);
         etValue.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(final TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     RetrofitHelper retrofitHelper = new RetrofitHelper(v.getText().toString());
-                    Call<Drinks> call = retrofitHelper.getCall();
-                    call.enqueue(new Callback<Drinks>() {
-                        @Override
-                        public void onResponse(Call<Drinks> call, Response<Drinks> response) {
-                            if(!response.isSuccessful()){
-                                textView.setText(response.code());
-                                return;
-                            }
-                            else {
-                                Drinks drinks = response.body();
-                                mAdapter = new Adapter_research(drinks);
-                                recyclerView.setAdapter(mAdapter);
-
-                            }
-
-
-
-                        }
-
-                        @Override
-                        public void onFailure(Call<Drinks> call, Throwable t) {
-                            textView.setText("Can't Find a cocktail with this ingredient "+ v.getText().toString());
-
-                        }
-                    });
+                    Call<Drinks> call =  retrofitHelper.getCall();
+                    stepUpDrinks(call);
                     hideKeyboardFrom(MainActivity.getContext() , root);
                     return true;
                 }
@@ -107,5 +89,31 @@ public class SearchFragment extends Fragment {
     public static void hideKeyboardFrom(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+    public void stepUpDrinks(Call<Drinks> call){
+        call.enqueue(new Callback<Drinks>() {
+            @Override
+            public void onResponse(Call<Drinks> call, Response<Drinks> response) {
+                if(!response.isSuccessful()){
+                    return;
+                }
+                drinks = response.body();
+                mAdapter = new Adapter_research(drinks);
+                recyclerView.setAdapter(mAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<Drinks> call, Throwable t) {
+                return;
+
+            }
+        });
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
     }
 }
