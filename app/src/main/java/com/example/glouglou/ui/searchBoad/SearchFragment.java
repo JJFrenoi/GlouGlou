@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.glouglou.MainActivity;
 import com.example.glouglou.R;
+import com.example.glouglou.ui.Async.InitCocktailAsyncTask;
 import com.example.glouglou.ui.pojo.Drink;
 import com.example.glouglou.ui.pojo.Drinks;
 import com.example.glouglou.ui.pojo.Thecocktaildb_Api;
@@ -37,7 +38,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment implements SearchListener {
     private SearchViewModel searchViewModel;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -62,9 +63,8 @@ public class SearchFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         layoutManager = new GridLayoutManager(MainActivity.getContext(),3);
         recyclerView.setLayoutManager(layoutManager);
-        RetrofitHelper retrofitHelper = new RetrofitHelper("a");
-        Call<Drinks> call = retrofitHelper.getCall();
-        stepUpDrinks(call);
+        new InitCocktailAsyncTask(this).execute("A");
+
         EditText etValue = (EditText) root.findViewById(R.id.plain_text_input);
         etValue.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -72,7 +72,31 @@ public class SearchFragment extends Fragment {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     RetrofitHelper retrofitHelper = new RetrofitHelper(v.getText().toString());
                     Call<Drinks> call =  retrofitHelper.getCall();
-                    stepUpDrinks(call);
+                    call.enqueue(new Callback<Drinks>() {
+                        @Override
+                        public void onResponse(Call<Drinks> call, Response<Drinks> response) {
+                            if(!response.isSuccessful()){
+                                textView.setText("Impossible to find with the word");
+                            }
+                            else{
+                                try {
+                                    drinks.getDrinks().clear();
+                                    drinks.getDrinks().addAll(response.body().getDrinks());
+                                    mAdapter.notifyDataSetChanged();
+
+                                }catch (Exception e){
+                                    textView.setText("Impossible to find with the word: " +v.getText().toString());
+                                }
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Drinks> call, Throwable t) {
+                            textView.setText("E: "+ t.getMessage());
+
+                        }
+                    });
                     hideKeyboardFrom(MainActivity.getContext() , root);
                     return true;
                 }
@@ -90,30 +114,18 @@ public class SearchFragment extends Fragment {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
-    public void stepUpDrinks(Call<Drinks> call){
-        call.enqueue(new Callback<Drinks>() {
-            @Override
-            public void onResponse(Call<Drinks> call, Response<Drinks> response) {
-                if(!response.isSuccessful()){
-                    return;
-                }
-                drinks = response.body();
-                mAdapter = new Adapter_research(drinks);
-                recyclerView.setAdapter(mAdapter);
-            }
 
-            @Override
-            public void onFailure(Call<Drinks> call, Throwable t) {
-                return;
-
-            }
-        });
-
-    }
 
     @Override
     public void onStart() {
         super.onStart();
 
+    }
+
+    @Override
+    public void onDrinksRetrieved(Drinks drinks) {
+        this.drinks = drinks;
+        mAdapter = new Adapter_research(drinks);
+        recyclerView.setAdapter(mAdapter);
     }
 }
