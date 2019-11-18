@@ -77,7 +77,7 @@ public class Adapter_research extends RecyclerView.Adapter<Adapter_research.MySe
             return mDataset.getDrinks().size();
         }
         catch (NullPointerException e){
-            return 0;
+            return 1;
         }
 
     }

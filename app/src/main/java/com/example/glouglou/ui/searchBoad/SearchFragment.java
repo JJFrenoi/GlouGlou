@@ -1,6 +1,5 @@
 package com.example.glouglou.ui.searchBoad;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -13,29 +12,23 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.glouglou.MainActivity;
 import com.example.glouglou.R;
 import com.example.glouglou.ui.Async.InitCocktailAsyncTask;
-import com.example.glouglou.ui.pojo.Drink;
 import com.example.glouglou.ui.pojo.Drinks;
-import com.example.glouglou.ui.pojo.Thecocktaildb_Api;
 import com.example.glouglou.ui.retrofit.RetrofitHelper;
-
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class SearchFragment extends Fragment implements SearchListener {
@@ -45,6 +38,8 @@ public class SearchFragment extends Fragment implements SearchListener {
     private RecyclerView.LayoutManager layoutManager;
     private View root ;
     private Drinks drinks ;
+    private EditText etValue;
+    private TextView textView;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -52,7 +47,7 @@ public class SearchFragment extends Fragment implements SearchListener {
         searchViewModel =
                 ViewModelProviders.of(this).get(SearchViewModel.class);
         root = inflater.inflate(R.layout.fragment_research, container, false);
-        final TextView textView = root.findViewById(R.id.text_research);
+        textView = root.findViewById(R.id.text_research);
         searchViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
@@ -64,8 +59,19 @@ public class SearchFragment extends Fragment implements SearchListener {
         layoutManager = new GridLayoutManager(MainActivity.getContext(),3);
         recyclerView.setLayoutManager(layoutManager);
         new InitCocktailAsyncTask(this).execute("A");
+        etValue = (EditText) root.findViewById(R.id.plain_text_input);
+        return root;
+    }
+    private static void hideKeyboardFrom(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        assert imm != null;
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
 
-        EditText etValue = (EditText) root.findViewById(R.id.plain_text_input);
+
+    @Override
+    public void onStart() {
+        super.onStart();
         etValue.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(final TextView v, int actionId, KeyEvent event) {
@@ -105,20 +111,6 @@ public class SearchFragment extends Fragment implements SearchListener {
 
             }
         });
-
-
-
-        return root;
-    }
-    public static void hideKeyboardFrom(Context context, View view) {
-        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
-
-
-    @Override
-    public void onStart() {
-        super.onStart();
 
     }
 
