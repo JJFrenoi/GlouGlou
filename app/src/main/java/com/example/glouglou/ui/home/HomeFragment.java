@@ -36,15 +36,19 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private ImageView imageView ;
+    private TextView textView ;
+    private TextView text_glass ;
+    private TextView text_instruction ;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final ImageView imageView = root.findViewById(R.id.image);
-        final TextView textView = root.findViewById(R.id.text_home);
-        final TextView text_glass = root.findViewById(R.id.text_glass);
-        final TextView text_instruction = root.findViewById(R.id.text_instruction);
+        imageView = root.findViewById(R.id.image);
+        textView = root.findViewById(R.id.text_home);
+        text_glass = root.findViewById(R.id.text_glass);
+        text_instruction = root.findViewById(R.id.text_instruction);
         homeViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
@@ -55,8 +59,12 @@ public class HomeFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         layoutManager = new GridLayoutManager(MainActivity.getContext(),2);
         recyclerView.setLayoutManager(layoutManager);
+        return root;
+    }
 
-
+    @Override
+    public void onStart() {
+        super.onStart();
         final RetrofitHelper retrofitHelper = new RetrofitHelper();
         final Call<Drinks> call = retrofitHelper.getCall();
         call.enqueue((new Callback<Drinks>() {
@@ -81,6 +89,5 @@ public class HomeFragment extends Fragment {
                 textView.setText(t.getMessage());
             }
         }));
-        return root;
     }
 }

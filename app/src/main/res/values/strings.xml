@@ -12,4 +12,5 @@
     <string name="enter_your_search_here">Enter your search here</string>
     <string name="textview">TextView</string>
     <string name="ingredient_name">ingredientName</string>
+    <string name="add_favorite">Favorite</string>
 </resources>
