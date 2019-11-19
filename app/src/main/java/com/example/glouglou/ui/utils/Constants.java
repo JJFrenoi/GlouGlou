@@ -1,4 +1,4 @@
-package com.example.glouglou.utils;
+package com.example.glouglou.ui.utils;
 
 
 public class Constants {
@@ -12,7 +12,7 @@ public class Constants {
     }
 
     public class Preferences {
-        public static final String SHARED_PREFERENCES_FILE_NAME = "GlouGlouSharedPrefs";
+        public static final String SHARED_PREFERENCES_FILE_NAME = "glouGlouSharedPrefs";
         public static final String PREF_LOGIN = "prefLogin";
         public static final String PREF_PASSWORD = "prefPassword";
     }
