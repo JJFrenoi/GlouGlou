@@ -16,7 +16,8 @@
             android:name=".MainActivity"
             android:label="@string/app_name">
         </activity>
-        <activity android:name=".GlouGlouLogin">
+        <activity android:name=".GlouGlouLogin"
+            android:label="GlouGlou">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />

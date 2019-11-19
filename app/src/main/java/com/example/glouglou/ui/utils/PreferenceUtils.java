@@ -1,19 +1,16 @@
-package com.example.glouglou.utils;
+package com.example.glouglou.ui.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.provider.SyncStateContract;
 
 import com.example.glouglou.MainActivity;
 
-import java.util.logging.SocketHandler;
-
 
 public class PreferenceUtils {
-    @SuppressWarnings("unused")
+    /*@SuppressWarnings("unused")
     private static SharedPreferences getSharedPreferences(Context context){
         return context.getSharedPreferences(Constants.Preferences.SHARED_PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
-    }
+    }*/
 
     private static SharedPreferences getSharedPreferences(){
         return MainActivity.getContext().getSharedPreferences(Constants.Preferences.SHARED_PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
@@ -26,7 +23,7 @@ public class PreferenceUtils {
 
     public static void setLogin(String login){
         final SharedPreferences prefs = getSharedPreferences();
-        prefs.edit().putString(Constants.Preferences.PREF_LOGIN, login).commit();
+        prefs.edit().putString(Constants.Preferences.PREF_LOGIN, login).apply();
     }
 
     public static String getPassword(){
@@ -36,6 +33,6 @@ public class PreferenceUtils {
 
     public static void setPassword(String password){
         final SharedPreferences prefs = getSharedPreferences();
-        prefs.edit().putString(Constants.Preferences.PREF_PASSWORD, password).commit();
+        prefs.edit().putString(Constants.Preferences.PREF_PASSWORD, password).apply();
     }
 }

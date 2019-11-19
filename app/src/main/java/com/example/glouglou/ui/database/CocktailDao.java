@@ -19,5 +19,7 @@ public interface CocktailDao {
     void isertAll(List<Drink> drinks);
     @Delete
     void delete(Drink drink);
+    @Query("DELETE FROM Drink")
+    public void nukeTable();
 
 }
