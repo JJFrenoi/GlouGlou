@@ -1,16 +1,17 @@
 package com.example.glouglou;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-
-import com.example.glouglou.ui.Async.CleanUpBDD;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import com.example.glouglou.ui.utils.Constants;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
     private static Context sContext;
@@ -30,6 +31,19 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+        final Intent intent = getIntent();
+        if (null != intent){
+            final Bundle extras = intent.getExtras();
+            if ((null != extras) && (extras.containsKey(Constants.Login.EXTRA_LOGIN))){
+                // Retrieve the login
+                final String login = extras.getString(Constants.Login.EXTRA_LOGIN);
+
+                // Set as ActionBar subtitle
+                getSupportActionBar().setSubtitle(login);
+
+
+            }
+        }
     }
     public static Context getContext() {
         return sContext;
