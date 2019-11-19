@@ -3,17 +3,18 @@ package com.example.glouglou.ui.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.glouglou.GlouGlouLogin;
 import com.example.glouglou.MainActivity;
 
 
 public class PreferenceUtils {
-    /*@SuppressWarnings("unused")
+
     private static SharedPreferences getSharedPreferences(Context context){
         return context.getSharedPreferences(Constants.Preferences.SHARED_PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
-    }*/
+    }
 
     private static SharedPreferences getSharedPreferences(){
-        return MainActivity.getContext().getSharedPreferences(Constants.Preferences.SHARED_PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
+        return GlouGlouLogin.getContext().getSharedPreferences(Constants.Preferences.SHARED_PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
     }
 
     public static String getLogin(){

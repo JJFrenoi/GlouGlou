@@ -1,5 +1,6 @@
 package com.example.glouglou;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +17,7 @@ import com.example.glouglou.ui.utils.PreferenceUtils;
 
 
 public class GlouGlouLogin extends AppCompatActivity implements View.OnClickListener {
-
+    private static Context sContext;
     private EditText mLoginEdit;
     private EditText mPasswordEdit;
 
@@ -24,20 +25,17 @@ public class GlouGlouLogin extends AppCompatActivity implements View.OnClickList
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        sContext = getApplicationContext();
         mLoginEdit = (EditText) findViewById(R.id.loginEditText);
         mPasswordEdit = (EditText) findViewById(R.id.passwordEditText);
         findViewById(R.id.loginButton).setOnClickListener(this);
-        try {
-            final String storedLogin = PreferenceUtils.getLogin();
-            final String storedPassword = PreferenceUtils.getPassword();
-            if ((!TextUtils.isEmpty(storedLogin)) && (!TextUtils.isEmpty(storedPassword))) {
-                final Intent homeIntent = getHomeActivityIntent(storedLogin);
-                startActivity(homeIntent);
-            }
-        }catch (Exception e){
-            Log.d("Jena","marhcepas");
+        final String storedLogin = PreferenceUtils.getLogin();
+        final String storedPassword = PreferenceUtils.getPassword();
+        if ((!TextUtils.isEmpty(storedLogin)) && (!TextUtils.isEmpty(storedPassword))) {
+            final Intent homeIntent = getHomeActivityIntent(storedLogin);
+            startActivity(homeIntent);
         }
+
 
     }
 
@@ -60,12 +58,8 @@ public class GlouGlouLogin extends AppCompatActivity implements View.OnClickList
         }
 
         // Before launching the second Activity, just save the values in SharedPreferences
-        try {
-            PreferenceUtils.setLogin(mLoginEdit.getText().toString());
-            PreferenceUtils.setPassword(mPasswordEdit.getText().toString());
-        }catch (Exception e ){
-            Log.d("Jean","error 2");
-        }
+        PreferenceUtils.setLogin(mLoginEdit.getText().toString());
+        PreferenceUtils.setPassword(mPasswordEdit.getText().toString());
 
 
         // Here we are, a login and password are set, try to login
@@ -80,6 +74,9 @@ public class GlouGlouLogin extends AppCompatActivity implements View.OnClickList
         extras.putString(Constants.Login.EXTRA_LOGIN, userName);
         intent.putExtras(extras);
         return intent;
+    }
+    public static Context getContext() {
+        return sContext;
     }
 
 }
