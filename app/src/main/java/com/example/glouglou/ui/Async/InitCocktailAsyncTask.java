@@ -3,17 +3,13 @@ package com.example.glouglou.ui.Async;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.glouglou.ui.database.DatabaseHelper;
-import com.example.glouglou.ui.pojo.Drink;
+import com.example.glouglou.ui.Interfaces.DrinksListener;
 import com.example.glouglou.ui.pojo.Drinks;
 import com.example.glouglou.ui.retrofit.RetrofitHelper;
-import com.example.glouglou.ui.searchBoad.SearchListener;
-
-import java.util.List;
 
 public class InitCocktailAsyncTask extends AsyncTask<String,Void, Drinks> {
-    public SearchListener searchListener ;
-    public InitCocktailAsyncTask(SearchListener searchListener){
+    public DrinksListener searchListener ;
+    public InitCocktailAsyncTask(DrinksListener searchListener){
         this.searchListener = searchListener;
     }
     @Override
