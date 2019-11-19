@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.glouglou.MainActivity;
 import com.example.glouglou.R;
 import com.example.glouglou.ui.Async.InitCocktailAsyncTask;
+import com.example.glouglou.ui.Interfaces.DrinksListener;
 import com.example.glouglou.ui.pojo.Drinks;
 import com.example.glouglou.ui.retrofit.RetrofitHelper;
 
@@ -31,7 +32,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class SearchFragment extends Fragment implements SearchListener {
+public class SearchFragment extends Fragment implements DrinksListener {
     private SearchViewModel searchViewModel;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
