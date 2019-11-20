@@ -3,7 +3,10 @@ package com.example.glouglou;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -11,6 +14,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.glouglou.ui.utils.Constants;
+import com.example.glouglou.ui.utils.PreferenceUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -47,5 +51,23 @@ public class MainActivity extends AppCompatActivity {
     }
     public static Context getContext() {
         return sContext;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_top, menu);
+        return true ;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.actionLogout){
+            PreferenceUtils.setLogin(null);
+            PreferenceUtils.setPassword(null);
+            finish();
+            return true;
+        }
+        return  super.onOptionsItemSelected(item);
     }
 }
