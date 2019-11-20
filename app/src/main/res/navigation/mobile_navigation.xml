@@ -22,4 +22,5 @@
         android:name="com.example.glouglou.ui.favoritesBoard.FavoriteFragment"
         android:label="@string/title_favorite"
         tools:layout="@layout/fragment_favorite" />
+
 </navigation>

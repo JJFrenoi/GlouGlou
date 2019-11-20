@@ -3,7 +3,7 @@
     <string name="title_home">GlouGlou Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="title_search">Let\'s Search a cocktail to GlouGlou</string>
+    <string name="title_search">Let\'s Search for a cocktail</string>
     <string name="title_favorite">Here\'s your favorite GlouGlou</string>
     <string name="nav_search">Search</string>
     <string name="nav_favorite">Favorite</string>
@@ -15,4 +15,5 @@
     <string name="add_favorite">Favorite</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
+    <string name="logout">Logout</string>
 </resources>
