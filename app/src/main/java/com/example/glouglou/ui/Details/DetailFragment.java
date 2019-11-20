@@ -75,7 +75,7 @@ public class DetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 new AddToBDDAsync().execute(drinks);
-                Toast.makeText(MainActivity.getContext(),"Adding to favorite",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.getContext(),"Adding to favorites",Toast.LENGTH_SHORT).show();
             }
         });
     }

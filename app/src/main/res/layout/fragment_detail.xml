@@ -5,14 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/sand"
     tools:context=".MainActivity">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/root_view_detail"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="100dp">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/image_detail"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:text="@string/textview"
             android:textAlignment="center"
-            android:textSize="20sp"
+            android:textSize="40sp"
             app:layout_constraintBottom_toTopOf="@id/text_glass_detail"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:text="@string/textview"
             android:textAlignment="center"
-            android:textSize="20sp"
+            android:textSize="30sp"
             app:layout_constraintBottom_toTopOf="@id/text_instruction_detail"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -69,7 +69,8 @@
             android:layout_height="wrap_content"
             android:text="@string/textview"
             android:textAlignment="center"
-            android:textSize="20sp"
+            android:layout_marginBottom="10dp"
+            android:textSize="25sp"
             app:layout_constraintBottom_toTopOf="@id/list_ingredients_detail"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -77,10 +78,13 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_ingredients_detail"
-            android:layout_width="413dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="10dp"
-            android:background="@android:color/holo_orange_light"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:padding="10dp"
+            android:textSize="25sp"
+            android:background="@drawable/mer_b"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
