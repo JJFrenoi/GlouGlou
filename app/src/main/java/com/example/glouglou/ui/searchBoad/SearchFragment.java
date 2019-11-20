@@ -82,7 +82,7 @@ public class SearchFragment extends Fragment implements DrinksListener {
         });
         recyclerView = (RecyclerView) root.findViewById(R.id.recyclerview_research);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new GridLayoutManager(MainActivity.getContext(),3);
+        layoutManager = new GridLayoutManager(MainActivity.getContext(),2);
         recyclerView.setLayoutManager(layoutManager);
         new InitCocktailAsyncTask(this).execute("A");
         etValue = (EditText) root.findViewById(R.id.plain_text_input);
