@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -51,5 +52,23 @@ public class MainActivity extends AppCompatActivity {
 
     public static Context getContext() {
         return sContext;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_top, menu);
+        return true ;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.actionLogout){
+            PreferenceUtils.setLogin(null);
+            PreferenceUtils.setPassword(null);
+            finish();
+            return true;
+        }
+        return  super.onOptionsItemSelected(item);
     }
 }

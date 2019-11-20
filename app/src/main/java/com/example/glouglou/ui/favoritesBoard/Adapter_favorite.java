@@ -24,7 +24,6 @@ public class Adapter_favorite extends RecyclerView.Adapter<Adapter_favorite.MyFa
         // each data item is just a string in this case
         public TextView textName;
         public TextView idDrink;
-        //public Button btnDetails;
         public ImageView imageView;
         public MyFavoriteHolder(View v) {
             super(v);

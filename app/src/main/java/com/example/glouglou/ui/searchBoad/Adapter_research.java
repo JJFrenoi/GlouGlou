@@ -1,12 +1,10 @@
 package com.example.glouglou.ui.searchBoad;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,27 +14,20 @@ import com.example.glouglou.ui.pojo.Drink;
 import com.example.glouglou.ui.pojo.Drinks;
 import com.squareup.picasso.Picasso;
 
-import java.util.Random;
-
 public class Adapter_research extends RecyclerView.Adapter<Adapter_research.MySearchHolder> {
     private Drinks mDataset;
+    private View.OnClickListener mOnItemClickListener;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
-    public static class MySearchHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
-        public TextView textName;
-        public TextView idDrink;
-        //public Button btnDetails;
-        public ImageView imageView;
-        public MySearchHolder(View v) {
-            super(v);
-            textName = (TextView) v.findViewById(R.id.drink_name);
-            idDrink = (TextView) v.findViewById(R.id.drink_id);
-           // btnDetails = (Button) v.findViewById(R.id.message_button);
-            imageView = (ImageView) v.findViewById(R.id.imageView);
+    // Return the size of your dataset (invoked by the layout manager)
+    @Override
+    public int getItemCount() {
+        try{
+            return mDataset.getDrinks().size();
         }
+        catch (NullPointerException e){
+            return 1;
+        }
+
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
@@ -70,16 +61,27 @@ public class Adapter_research extends RecyclerView.Adapter<Adapter_research.MySe
 
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
-    @Override
-    public int getItemCount() {
-        try{
-            return mDataset.getDrinks().size();
-        }
-        catch (NullPointerException e){
-            return 1;
-        }
+    public void setOnItemClickListener(View.OnClickListener itemClickListener) {
+        mOnItemClickListener = itemClickListener;
+    }
 
+    // Provide a reference to the views for each data item
+    // Complex data items may need more than one view per item, and
+    // you provide access to all the views for a data item in a view holder
+    public  class MySearchHolder extends RecyclerView.ViewHolder {
+        // each data item is just a string in this case
+        public TextView textName;
+        public TextView idDrink;
+        //public Button btnDetails;
+        public ImageView imageView;
+        public MySearchHolder(View v) {
+            super(v);
+            v.setTag(this);
+            v.setOnClickListener(mOnItemClickListener);
+            textName = (TextView) v.findViewById(R.id.drink_name);
+            idDrink = (TextView) v.findViewById(R.id.drink_id);
+            imageView = (ImageView) v.findViewById(R.id.imageView);
+        }
     }
 }
 

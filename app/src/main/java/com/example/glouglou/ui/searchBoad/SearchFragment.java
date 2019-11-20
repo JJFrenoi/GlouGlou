@@ -3,6 +3,7 @@ package com.example.glouglou.ui.searchBoad;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +12,12 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -23,7 +26,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.glouglou.MainActivity;
 import com.example.glouglou.R;
 import com.example.glouglou.ui.Async.InitCocktailAsyncTask;
+import com.example.glouglou.ui.Details.DetailFragment;
 import com.example.glouglou.ui.Interfaces.DrinksListener;
+import com.example.glouglou.ui.pojo.Drink;
 import com.example.glouglou.ui.pojo.Drinks;
 import com.example.glouglou.ui.retrofit.RetrofitHelper;
 
@@ -35,12 +40,32 @@ import retrofit2.Response;
 public class SearchFragment extends Fragment implements DrinksListener {
     private SearchViewModel searchViewModel;
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private Adapter_research mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private View root ;
     private Drinks drinks ;
     private EditText etValue;
     private TextView textView;
+    private View.OnClickListener onItemClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            //TODO: Step 4 of 4: Finally call getTag() on the view.
+            // This viewHolder will have all required values.
+            RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+            int position = viewHolder.getAdapterPosition();
+            Drink thisDrink = drinks.getDrinks().get(position);
+            Toast.makeText(MainActivity.getContext(), "You Clicked: " + thisDrink.getStrDrink(), Toast.LENGTH_SHORT).show();
+            final FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            final DetailFragment detailFragment = new DetailFragment();
+            final Bundle bundle = new Bundle();
+            bundle.putParcelable("drink", (Parcelable) thisDrink);
+            detailFragment.setArguments(bundle);
+            transaction.replace(R.id.nav_host_fragment,detailFragment);
+            transaction.setCustomAnimations(R.animator.slide_in_right,0,0,R.animator.slide_in_left);
+            transaction.addToBackStack(null).commit();
+
+        }
+    };
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -120,5 +145,6 @@ public class SearchFragment extends Fragment implements DrinksListener {
         this.drinks = drinks;
         mAdapter = new Adapter_research(drinks);
         recyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(onItemClickListener);
     }
 }

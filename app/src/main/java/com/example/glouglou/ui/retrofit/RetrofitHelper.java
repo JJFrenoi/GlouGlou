@@ -1,16 +1,13 @@
 package com.example.glouglou.ui.retrofit;
-import com.example.glouglou.ui.pojo.Drink;
+
 import com.example.glouglou.ui.pojo.Drinks;
 import com.example.glouglou.ui.pojo.Thecocktaildb_Api;
 
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -147,7 +144,7 @@ public class RetrofitHelper {
         }
 
     }
-    public List<Ingredients> getListofIngredient(Drinks drinks){
+    public static List<Ingredients> getListofIngredient(Drinks drinks){
         List<Ingredients> listofIngredient = new ArrayList<>();
         if (drinks.getDrinks().get(0).getStrIngredient1() != null && drinks.getDrinks().get(0).getStrMeasure1() != null){
             Ingredients i = new Ingredients(drinks.getDrinks().get(0).getStrIngredient1(),drinks.getDrinks().get(0).getStrMeasure1());

@@ -81,7 +81,7 @@ public class HomeFragment extends Fragment {
                     text_glass.setText(drinks.getDrinks().get(0).getStrGlass());
                     text_instruction.setText(drinks.getDrinks().get(0).getStrInstructions());
                     Picasso.get().load(drinks.getDrinks().get(0).getStrDrinkThumb()).into(imageView);
-                    mAdapter = new Adapter_home(retrofitHelper.getListofIngredient(drinks));
+                    mAdapter = new Adapter_home(RetrofitHelper.getListofIngredient(drinks));
                     recyclerView.setAdapter(mAdapter);
                 }catch (Exception e ){
                     textView.setText("Error marche pas");
