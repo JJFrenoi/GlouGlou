@@ -1,5 +1,8 @@
 package com.example.glouglou.ui.pojo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -9,7 +12,7 @@ import androidx.room.PrimaryKey;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 @Entity
-public class Drink {
+public class Drink implements Parcelable {
     @PrimaryKey
     @NonNull
     @SerializedName("idDrink")
@@ -224,6 +227,78 @@ public class Drink {
     @Expose
     @ColumnInfo
     private String dateModified;
+    public final static Parcelable.Creator<Drink> CREATOR = new Creator<Drink>() {
+
+
+        @SuppressWarnings({
+                "unchecked"
+        })
+        public Drink createFromParcel(Parcel in) {
+            return new Drink(in);
+        }
+
+        public Drink[] newArray(int size) {
+            return (new Drink[size]);
+        }
+
+    }
+            ;
+
+    protected Drink(Parcel in) {
+        this.idDrink = ((String) in.readValue((String.class.getClassLoader())));
+        this.strDrink = ((String) in.readValue((String.class.getClassLoader())));
+        this.strDrinkAlternate = ((String) in.readValue((String.class.getClassLoader())));
+        this.strDrinkES = ((String) in.readValue((String.class.getClassLoader())));
+        this.strDrinkDE = ((String) in.readValue((String.class.getClassLoader())));
+        this.strDrinkFR = ((String) in.readValue((String.class.getClassLoader())));
+        this.strDrinkZHHANS = ((String) in.readValue((String.class.getClassLoader())));
+        this.strDrinkZHHANT = ((String) in.readValue((String.class.getClassLoader())));
+        this.strTags = ((String) in.readValue((String.class.getClassLoader())));
+        this.strVideo = ((String) in.readValue((String.class.getClassLoader())));
+        this.strCategory = ((String) in.readValue((String.class.getClassLoader())));
+        this.strIBA = ((String) in.readValue((String.class.getClassLoader())));
+        this.strAlcoholic = ((String) in.readValue((String.class.getClassLoader())));
+        this.strGlass = ((String) in.readValue((String.class.getClassLoader())));
+        this.strInstructions = ((String) in.readValue((String.class.getClassLoader())));
+        this.strInstructionsES = ((String) in.readValue((String.class.getClassLoader())));
+        this.strInstructionsDE = ((String) in.readValue((String.class.getClassLoader())));
+        this.strInstructionsFR = ((String) in.readValue((String.class.getClassLoader())));
+        this.strInstructionsZHHANS = ((String) in.readValue((String.class.getClassLoader())));
+        this.strInstructionsZHHANT = ((String) in.readValue((String.class.getClassLoader())));
+        this.strDrinkThumb = ((String) in.readValue((String.class.getClassLoader())));
+        this.strIngredient1 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strIngredient2 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strIngredient3 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strIngredient4 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strIngredient5 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strIngredient6 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strIngredient7 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strIngredient8 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strIngredient9 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strIngredient10 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strIngredient11 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strIngredient12 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strIngredient13 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strIngredient14 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strIngredient15 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strMeasure1 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strMeasure2 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strMeasure3 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strMeasure4 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strMeasure5 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strMeasure6 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strMeasure7 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strMeasure8 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strMeasure9 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strMeasure10 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strMeasure11 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strMeasure12 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strMeasure13 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strMeasure14 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strMeasure15 = ((String) in.readValue((String.class.getClassLoader())));
+        this.strCreativeCommonsConfirmed = ((String) in.readValue((String.class.getClassLoader())));
+        this.dateModified = ((String) in.readValue((String.class.getClassLoader())));
+    }
 
     /**
      * No args constructor for use in serialization
@@ -770,4 +845,66 @@ public class Drink {
         this.dateModified = dateModified;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(idDrink);
+        dest.writeValue(strDrink);
+        dest.writeValue(strDrinkAlternate);
+        dest.writeValue(strDrinkES);
+        dest.writeValue(strDrinkDE);
+        dest.writeValue(strDrinkFR);
+        dest.writeValue(strDrinkZHHANS);
+        dest.writeValue(strDrinkZHHANT);
+        dest.writeValue(strTags);
+        dest.writeValue(strVideo);
+        dest.writeValue(strCategory);
+        dest.writeValue(strIBA);
+        dest.writeValue(strAlcoholic);
+        dest.writeValue(strGlass);
+        dest.writeValue(strInstructions);
+        dest.writeValue(strInstructionsES);
+        dest.writeValue(strInstructionsDE);
+        dest.writeValue(strInstructionsFR);
+        dest.writeValue(strInstructionsZHHANS);
+        dest.writeValue(strInstructionsZHHANT);
+        dest.writeValue(strDrinkThumb);
+        dest.writeValue(strIngredient1);
+        dest.writeValue(strIngredient2);
+        dest.writeValue(strIngredient3);
+        dest.writeValue(strIngredient4);
+        dest.writeValue(strIngredient5);
+        dest.writeValue(strIngredient6);
+        dest.writeValue(strIngredient7);
+        dest.writeValue(strIngredient8);
+        dest.writeValue(strIngredient9);
+        dest.writeValue(strIngredient10);
+        dest.writeValue(strIngredient11);
+        dest.writeValue(strIngredient12);
+        dest.writeValue(strIngredient13);
+        dest.writeValue(strIngredient14);
+        dest.writeValue(strIngredient15);
+        dest.writeValue(strMeasure1);
+        dest.writeValue(strMeasure2);
+        dest.writeValue(strMeasure3);
+        dest.writeValue(strMeasure4);
+        dest.writeValue(strMeasure5);
+        dest.writeValue(strMeasure6);
+        dest.writeValue(strMeasure7);
+        dest.writeValue(strMeasure8);
+        dest.writeValue(strMeasure9);
+        dest.writeValue(strMeasure10);
+        dest.writeValue(strMeasure11);
+        dest.writeValue(strMeasure12);
+        dest.writeValue(strMeasure13);
+        dest.writeValue(strMeasure14);
+        dest.writeValue(strMeasure15);
+        dest.writeValue(strCreativeCommonsConfirmed);
+        dest.writeValue(dateModified);
+
+    }
 }
