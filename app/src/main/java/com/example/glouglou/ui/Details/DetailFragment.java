@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.glouglou.MainActivity;
 import com.example.glouglou.R;
 import com.example.glouglou.ui.Async.AddToBDDAsync;
-import com.example.glouglou.ui.home.Adapter_home;
 import com.example.glouglou.ui.pojo.Drink;
 import com.example.glouglou.ui.pojo.Drinks;
 import com.example.glouglou.ui.retrofit.RetrofitHelper;
@@ -63,7 +62,7 @@ public class DetailFragment extends Fragment {
         layoutManager = new GridLayoutManager(MainActivity.getContext(),2);
         recyclerView.setLayoutManager(layoutManager);
 
-        mAdapter = new Adapter_home(RetrofitHelper.getListofIngredient(drinks));
+        mAdapter = new Adapter_detail(RetrofitHelper.getListofIngredient(drinks));
         recyclerView.setAdapter(mAdapter);
         return root;
     }
