@@ -16,12 +16,10 @@ import java.util.List;
 public class Adapter_detail extends RecyclerView.Adapter<Adapter_detail.MySearchHolder> {
     private List<Ingredients> mDataset;
 
-    // Provide a suitable constructor (depends on the kind of dataset)
     public Adapter_detail(List<Ingredients> myDataset) {
         mDataset = myDataset;
     }
 
-    // Create new views (invoked by the layout manager)
     @Override
     public Adapter_detail.MySearchHolder onCreateViewHolder(ViewGroup parent,
                                                             int viewType) {
@@ -32,11 +30,8 @@ public class Adapter_detail extends RecyclerView.Adapter<Adapter_detail.MySearch
         return vh;
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(Adapter_detail.MySearchHolder holder, int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
         Ingredients i = mDataset.get(position);
         TextView text_ingredient = holder.text_ingredient;
         text_ingredient.setText(i.getIngredient());
@@ -46,14 +41,12 @@ public class Adapter_detail extends RecyclerView.Adapter<Adapter_detail.MySearch
 
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return mDataset.size();
     }
 
     public static class MySearchHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
         public TextView text_ingredient;
         public TextView mesure;
         public MySearchHolder(View v) {

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,11 +41,13 @@ public class HomeFragment extends Fragment {
     private TextView text_instruction ;
     private Button button_fav ;
     private Drinks drinks;
+    private ProgressBar progressBar;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+        progressBar = root.findViewById(R.id.progressBar);
         imageView = root.findViewById(R.id.image);
         button_fav = root.findViewById(R.id.fav);
         textView = root.findViewById(R.id.text_home);
@@ -60,6 +63,7 @@ public class HomeFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         layoutManager = new GridLayoutManager(MainActivity.getContext(),2);
         recyclerView.setLayoutManager(layoutManager);
+
         return root;
     }
 
@@ -83,6 +87,7 @@ public class HomeFragment extends Fragment {
                     Picasso.get().load(drinks.getDrinks().get(0).getStrDrinkThumb()).into(imageView);
                     mAdapter = new Adapter_home(RetrofitHelper.getListofIngredient(drinks));
                     recyclerView.setAdapter(mAdapter);
+                    progressBar.setVisibility(View.GONE);
                 }catch (Exception e ){
                     textView.setText("Error marche pas");
                 }
