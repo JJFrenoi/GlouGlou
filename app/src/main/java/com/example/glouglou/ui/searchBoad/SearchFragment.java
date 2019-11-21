@@ -49,8 +49,6 @@ public class SearchFragment extends Fragment implements DrinksListener {
     private View.OnClickListener onItemClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            //TODO: Step 4 of 4: Finally call getTag() on the view.
-            // This viewHolder will have all required values.
             RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
             int position = viewHolder.getAdapterPosition();
             Drink thisDrink = drinks.getDrinks().get(position);

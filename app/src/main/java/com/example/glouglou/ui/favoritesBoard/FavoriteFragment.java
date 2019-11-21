@@ -12,12 +12,16 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.glouglou.MainActivity;
 import com.example.glouglou.R;
+import com.example.glouglou.ui.Async.RemoveOneItem;
 import com.example.glouglou.ui.Async.RetrievedFromBDD;
 import com.example.glouglou.ui.Interfaces.DrinksListener;
+import com.example.glouglou.ui.Interfaces.ItemTouchHelperAdapter;
+import com.example.glouglou.ui.pojo.Drink;
 import com.example.glouglou.ui.pojo.Drinks;
 import com.example.glouglou.ui.searchBoad.Adapter_research;
 
@@ -27,10 +31,9 @@ public class FavoriteFragment extends Fragment implements DrinksListener {
     private TextView textView;
     private View root;
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private Adapter_favorite mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private Drinks drinks;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         notificationsViewModel =
@@ -48,20 +51,26 @@ public class FavoriteFragment extends Fragment implements DrinksListener {
         layoutManager = new GridLayoutManager(MainActivity.getContext(),3);
         recyclerView.setLayoutManager(layoutManager);
         new RetrievedFromBDD(this).execute();
-        return root;
+        return  root;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        
+
     }
     @Override
     public void onDrinksRetrieved(Drinks drinks) {
         if (drinks != null){
             this.drinks = drinks;
-            mAdapter = new Adapter_research(drinks);
+            mAdapter = new Adapter_favorite(drinks);
             recyclerView.setAdapter(mAdapter);
+        }
+        if (mAdapter != null && drinks.getDrinks().size() >0  ){
+            ItemTouchHelper.Callback callback =
+                    new SimpleItemTouchHelperCallback(mAdapter);
+            ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+            touchHelper.attachToRecyclerView(recyclerView);
         }
 
     }

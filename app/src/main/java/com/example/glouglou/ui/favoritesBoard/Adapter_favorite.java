@@ -10,12 +10,33 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.glouglou.R;
+import com.example.glouglou.ui.Async.RemoveOneItem;
+import com.example.glouglou.ui.Interfaces.ItemTouchHelperAdapter;
 import com.example.glouglou.ui.pojo.Drink;
 import com.example.glouglou.ui.pojo.Drinks;
 import com.squareup.picasso.Picasso;
 
-public class Adapter_favorite extends RecyclerView.Adapter<Adapter_favorite.MyFavoriteHolder> {
+import java.util.Collections;
+
+public class Adapter_favorite extends RecyclerView.Adapter<Adapter_favorite.MyFavoriteHolder> implements ItemTouchHelperAdapter {
     private Drinks mDataset;
+
+    @Override
+    public boolean onItemMove(int fromPosition, int toPosition) {
+        return true;
+
+    }
+
+    @Override
+    public void onItemDismiss(int position) {
+        if (mDataset.getDrinks().size() > 1 ){
+            mDataset.getDrinks().remove(position);
+            new RemoveOneItem().execute(mDataset.getDrinks().get(0));
+            notifyItemRemoved(position);
+        }
+
+
+    }
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -27,6 +48,7 @@ public class Adapter_favorite extends RecyclerView.Adapter<Adapter_favorite.MyFa
         public ImageView imageView;
         public MyFavoriteHolder(View v) {
             super(v);
+            v.setTag(this);
             textName = (TextView) v.findViewById(R.id.drink_name);
             idDrink = (TextView) v.findViewById(R.id.drink_id);
             // btnDetails = (Button) v.findViewById(R.id.message_button);
