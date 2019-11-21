@@ -12,12 +12,14 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
         android:text="@string/ingredient_name"
+        android:textSize="15dp"
         android:textColor="#FFFFFF" />
 
     <TextView
         android:id="@+id/text_mesurement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="15dp"
         android:layout_toEndOf="@id/text_ingredient"
         android:text="@string/textview" />
 </RelativeLayout>
