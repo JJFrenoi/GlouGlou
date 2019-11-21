@@ -48,7 +48,7 @@ public class FavoriteFragment extends Fragment implements DrinksListener {
         });
         recyclerView = (RecyclerView) root.findViewById(R.id.recyclerview_favorite);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new GridLayoutManager(MainActivity.getContext(),3);
+        layoutManager = new GridLayoutManager(MainActivity.getContext(),2);
         recyclerView.setLayoutManager(layoutManager);
         new RetrievedFromBDD(this).execute();
         return  root;

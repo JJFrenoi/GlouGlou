@@ -80,7 +80,7 @@ public class Adapter_favorite extends RecyclerView.Adapter<Adapter_favorite.MyFa
         TextView textName = holder.textName;
         textName.setText(drink.getStrDrink());
         TextView idDrink = holder.idDrink;
-        idDrink.setText(drink.getIdDrink());
+        //idDrink.setText(drink.getIdDrink());
         Picasso.get().load(drink.getStrDrinkThumb()).into(holder.imageView);
 
 
