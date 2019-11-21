@@ -20,6 +20,7 @@ import java.util.Collections;
 
 public class Adapter_favorite extends RecyclerView.Adapter<Adapter_favorite.MyFavoriteHolder> implements ItemTouchHelperAdapter {
     private Drinks mDataset;
+    private View.OnClickListener mOnItemClickListener;
 
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
@@ -37,11 +38,14 @@ public class Adapter_favorite extends RecyclerView.Adapter<Adapter_favorite.MyFa
 
 
     }
+    public void setOnItemClickListener(View.OnClickListener itemClickListener) {
+        mOnItemClickListener = itemClickListener;
+    }
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    public static class MyFavoriteHolder extends RecyclerView.ViewHolder {
+    public  class MyFavoriteHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView textName;
         public TextView idDrink;
@@ -49,6 +53,7 @@ public class Adapter_favorite extends RecyclerView.Adapter<Adapter_favorite.MyFa
         public MyFavoriteHolder(View v) {
             super(v);
             v.setTag(this);
+            v.setOnClickListener(mOnItemClickListener);
             textName = (TextView) v.findViewById(R.id.drink_name);
             idDrink = (TextView) v.findViewById(R.id.drink_id);
             // btnDetails = (Button) v.findViewById(R.id.message_button);
