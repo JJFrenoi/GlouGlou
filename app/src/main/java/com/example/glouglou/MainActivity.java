@@ -36,10 +36,7 @@ public class MainActivity extends AppCompatActivity {
         if (null != intent){
             final Bundle extras = intent.getExtras();
             if ((null != extras) && (extras.containsKey(Constants.Login.EXTRA_LOGIN))){
-                // Retrieve the login
                 final String login = extras.getString(Constants.Login.EXTRA_LOGIN);
-
-                // Set as ActionBar subtitle
                 getSupportActionBar().setSubtitle(login);
 
 
