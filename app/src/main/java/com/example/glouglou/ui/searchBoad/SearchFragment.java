@@ -112,6 +112,7 @@ public class SearchFragment extends Fragment implements DrinksListener {
                                     drinks.getDrinks().clear();
                                     drinks.getDrinks().addAll(response.body().getDrinks());
                                     mAdapter.notifyDataSetChanged();
+                                    textView.setText("Glouglou : "+v.getText().toString());
 
                                 }catch (Exception e){
                                     textView.setText("Impossible to find with the word: " +v.getText().toString());
