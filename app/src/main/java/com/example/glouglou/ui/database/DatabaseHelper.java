@@ -1,7 +1,6 @@
 package com.example.glouglou.ui.database;
 
 import androidx.room.Room;
-import androidx.room.RoomDatabase;
 
 import com.example.glouglou.MainActivity;
 
@@ -19,7 +18,7 @@ public class DatabaseHelper {
     }
     public DatabaseHelper(){
         db = Room.databaseBuilder(MainActivity.getContext(),
-                CocktailDatabase.class,"CocktailBDD.db").build();
+                CocktailDatabase.class,"CocktailBDD.db").fallbackToDestructiveMigration().build();
     }
 
 }

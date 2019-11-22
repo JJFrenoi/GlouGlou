@@ -227,6 +227,10 @@ public class Drink implements Parcelable {
     @Expose
     @ColumnInfo
     private String dateModified;
+    @SerializedName("owner")
+    @Expose
+    @ColumnInfo
+    private String owner;
     public final static Parcelable.Creator<Drink> CREATOR = new Creator<Drink>() {
 
 
@@ -298,6 +302,7 @@ public class Drink implements Parcelable {
         this.strMeasure15 = ((String) in.readValue((String.class.getClassLoader())));
         this.strCreativeCommonsConfirmed = ((String) in.readValue((String.class.getClassLoader())));
         this.dateModified = ((String) in.readValue((String.class.getClassLoader())));
+        this.owner = ((String) in.readValue((String.class.getClassLoader())));
     }
 
     /**
@@ -364,7 +369,7 @@ public class Drink implements Parcelable {
      * @param strMeasure15
      */
     @Ignore
-    public Drink(String idDrink, String strDrink, String strDrinkAlternate, String strDrinkES, String strDrinkDE, String strDrinkFR, String strDrinkZHHANS, String strDrinkZHHANT, String strTags, String strVideo, String strCategory, String strIBA, String strAlcoholic, String strGlass, String strInstructions, String strInstructionsES, String strInstructionsDE, String strInstructionsFR, String strInstructionsZHHANS, String strInstructionsZHHANT, String strDrinkThumb, String strIngredient1, String strIngredient2, String strIngredient3, String strIngredient4, String strIngredient5, String strIngredient6, String strIngredient7, String strIngredient8, String strIngredient9, String strIngredient10, String strIngredient11, String strIngredient12, String strIngredient13, String strIngredient14, String strIngredient15, String strMeasure1, String strMeasure2, String strMeasure3, String strMeasure4, String strMeasure5, String strMeasure6, String strMeasure7, String strMeasure8, String strMeasure9, String strMeasure10, String strMeasure11, String strMeasure12, String strMeasure13, String strMeasure14, String strMeasure15, String strCreativeCommonsConfirmed, String dateModified) {
+    public Drink(String idDrink, String strDrink, String strDrinkAlternate, String strDrinkES, String strDrinkDE, String strDrinkFR, String strDrinkZHHANS, String strDrinkZHHANT, String strTags, String strVideo, String strCategory, String strIBA, String strAlcoholic, String strGlass, String strInstructions, String strInstructionsES, String strInstructionsDE, String strInstructionsFR, String strInstructionsZHHANS, String strInstructionsZHHANT, String strDrinkThumb, String strIngredient1, String strIngredient2, String strIngredient3, String strIngredient4, String strIngredient5, String strIngredient6, String strIngredient7, String strIngredient8, String strIngredient9, String strIngredient10, String strIngredient11, String strIngredient12, String strIngredient13, String strIngredient14, String strIngredient15, String strMeasure1, String strMeasure2, String strMeasure3, String strMeasure4, String strMeasure5, String strMeasure6, String strMeasure7, String strMeasure8, String strMeasure9, String strMeasure10, String strMeasure11, String strMeasure12, String strMeasure13, String strMeasure14, String strMeasure15, String strCreativeCommonsConfirmed, String dateModified , String owner) {
         super();
         this.idDrink = idDrink;
         this.strDrink = strDrink;
@@ -419,6 +424,7 @@ public class Drink implements Parcelable {
         this.strMeasure15 = strMeasure15;
         this.strCreativeCommonsConfirmed = strCreativeCommonsConfirmed;
         this.dateModified = dateModified;
+        this.owner = owner ;
     }
 
     public String getIdDrink() {
@@ -845,6 +851,9 @@ public class Drink implements Parcelable {
         this.dateModified = dateModified;
     }
 
+    public String getOwner(){return owner;}
+    public void setOwner(String owner){this.owner = owner;}
+
     @Override
     public int describeContents() {
         return 0;
@@ -905,6 +914,7 @@ public class Drink implements Parcelable {
         dest.writeValue(strMeasure15);
         dest.writeValue(strCreativeCommonsConfirmed);
         dest.writeValue(dateModified);
+        dest.writeValue(owner);
 
     }
 }

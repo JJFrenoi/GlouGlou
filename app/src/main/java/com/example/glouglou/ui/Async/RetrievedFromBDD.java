@@ -6,6 +6,7 @@ import com.example.glouglou.ui.Interfaces.DrinksListener;
 import com.example.glouglou.ui.database.DatabaseHelper;
 import com.example.glouglou.ui.pojo.Drink;
 import com.example.glouglou.ui.pojo.Drinks;
+import com.example.glouglou.ui.utils.PreferenceUtils;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class RetrievedFromBDD extends AsyncTask<Void,Void, Drinks> {
     }
     @Override
     protected Drinks doInBackground(Void... voids) {
-        List<Drink> drinks = DatabaseHelper.getInstance().getCocktailDao().getAll();
+        List<Drink> drinks = DatabaseHelper.getInstance().getCocktailDao().getAllbyUser(PreferenceUtils.getLogin());
         if (drinks !=null){
             Drinks drinks1  = new Drinks(drinks);
             return drinks1;

@@ -7,7 +7,6 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import com.example.glouglou.ui.pojo.Drink;
-import com.example.glouglou.ui.pojo.Drinks;
 
 import java.util.List;
 
@@ -15,6 +14,8 @@ import java.util.List;
 public interface CocktailDao {
     @Query("SELECT * FROM Drink")
     List<Drink> getAll();
+    @Query("SELECT * FROM Drink where owner = :userId")
+    List<Drink> getAllbyUser(String userId);
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void isertAll(List<Drink> drinks);
     @Delete

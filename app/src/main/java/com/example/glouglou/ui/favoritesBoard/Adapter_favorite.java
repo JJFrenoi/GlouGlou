@@ -30,8 +30,8 @@ public class Adapter_favorite extends RecyclerView.Adapter<Adapter_favorite.MyFa
     @Override
     public void onItemDismiss(int position) {
         if (mDataset.getDrinks().size() > 1 ){
+            new RemoveOneItem().execute(mDataset.getDrinks().get(position));
             mDataset.getDrinks().remove(position);
-            new RemoveOneItem().execute(mDataset.getDrinks().get(0));
             notifyItemRemoved(position);
         }
 

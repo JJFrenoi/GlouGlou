@@ -20,6 +20,7 @@ import com.example.glouglou.ui.Async.AddToBDDAsync;
 import com.example.glouglou.ui.pojo.Drink;
 import com.example.glouglou.ui.pojo.Drinks;
 import com.example.glouglou.ui.retrofit.RetrofitHelper;
+import com.example.glouglou.ui.utils.PreferenceUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -73,6 +74,7 @@ public class DetailFragment extends Fragment {
         button_fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                drinks.getDrinks().get(0).setOwner(PreferenceUtils.getLogin());
                 new AddToBDDAsync().execute(drinks);
                 Toast.makeText(MainActivity.getContext(),"Adding to favorites",Toast.LENGTH_SHORT).show();
             }

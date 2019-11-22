@@ -23,6 +23,7 @@ import com.example.glouglou.R;
 import com.example.glouglou.ui.Async.AddToBDDAsync;
 import com.example.glouglou.ui.pojo.Drinks;
 import com.example.glouglou.ui.retrofit.RetrofitHelper;
+import com.example.glouglou.ui.utils.PreferenceUtils;
 import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
@@ -103,6 +104,7 @@ public class HomeFragment extends Fragment {
         button_fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                drinks.getDrinks().get(0).setOwner(PreferenceUtils.getLogin());
                 new AddToBDDAsync().execute(drinks);
                 Toast.makeText(MainActivity.getContext(),"Adding to BDD",Toast.LENGTH_SHORT).show();
             }
