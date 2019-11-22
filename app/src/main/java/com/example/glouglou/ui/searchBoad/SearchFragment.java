@@ -3,7 +3,6 @@ package com.example.glouglou.ui.searchBoad;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,10 +55,10 @@ public class SearchFragment extends Fragment implements DrinksListener {
             final FragmentTransaction transaction = getFragmentManager().beginTransaction();
             final DetailFragment detailFragment = new DetailFragment();
             final Bundle bundle = new Bundle();
-            bundle.putParcelable("drink", (Parcelable) thisDrink);
+            bundle.putParcelable("drink", thisDrink);
             detailFragment.setArguments(bundle);
-            transaction.replace(R.id.nav_host_fragment,detailFragment);
             transaction.setCustomAnimations(R.animator.slide_in_right,0,0,R.animator.slide_in_left);
+            transaction.replace(R.id.nav_host_fragment,detailFragment);
             transaction.addToBackStack(null).commit();
 
         }
