@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.glouglou.MainActivity;
@@ -60,7 +60,7 @@ public class DetailFragment extends Fragment {
 
         recyclerView = (RecyclerView) root.findViewById(R.id.list_ingredients_detail);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new GridLayoutManager(MainActivity.getContext(),2);
+        layoutManager = new LinearLayoutManager(MainActivity.getContext());
         recyclerView.setLayoutManager(layoutManager);
 
         mAdapter = new Adapter_detail(RetrofitHelper.getListofIngredient(drinks));

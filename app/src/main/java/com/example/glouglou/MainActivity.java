@@ -8,11 +8,13 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.glouglou.ui.Service.ForegroundService;
 import com.example.glouglou.ui.utils.Constants;
 import com.example.glouglou.ui.utils.PreferenceUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -63,6 +65,23 @@ public class MainActivity extends AppCompatActivity {
             finish();
             return true;
         }
+        else if (id == R.id.actionStart){
+            startService();
+        }
+        else if(id==R.id.actionStop){
+            stopService();
+        }
         return  super.onOptionsItemSelected(item);
+    }
+    public void startService() {
+        Intent serviceIntent = new Intent(this, ForegroundService.class);
+        serviceIntent.putExtra("inputExtra", "Foreground Service Example in Android");
+
+        ContextCompat.startForegroundService(this, serviceIntent);
+    }
+
+    public void stopService() {
+        Intent serviceIntent = new Intent(this, ForegroundService.class);
+        stopService(serviceIntent);
     }
 }

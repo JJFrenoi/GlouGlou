@@ -5,6 +5,12 @@
         android:orderInCategory="100"
         android:icon="@drawable/logout"
         android:title="@string/logout"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/actionStart"
+        android:title="@string/start"
+        app:showAsAction="always"/>
+    <item android:id="@+id/actionStop"
+        android:title="@string/stop"
         app:showAsAction="always"/>
 
 </menu>

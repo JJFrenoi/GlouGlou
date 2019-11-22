@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.glouglou.MainActivity;
@@ -62,7 +62,7 @@ public class HomeFragment extends Fragment {
         });
         recyclerView = (RecyclerView) root.findViewById(R.id.list_ingredients);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new GridLayoutManager(MainActivity.getContext(),2);
+        layoutManager = new LinearLayoutManager(MainActivity.getContext());
         recyclerView.setLayoutManager(layoutManager);
 
         return root;

@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
@@ -20,14 +20,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.glouglou.MainActivity;
 import com.example.glouglou.R;
-import com.example.glouglou.ui.Async.RemoveOneItem;
 import com.example.glouglou.ui.Async.RetrievedFromBDD;
 import com.example.glouglou.ui.Details.DetailFragment;
 import com.example.glouglou.ui.Interfaces.DrinksListener;
-import com.example.glouglou.ui.Interfaces.ItemTouchHelperAdapter;
 import com.example.glouglou.ui.pojo.Drink;
 import com.example.glouglou.ui.pojo.Drinks;
-import com.example.glouglou.ui.searchBoad.Adapter_research;
 
 public class FavoriteFragment extends Fragment implements DrinksListener {
 
@@ -50,8 +47,8 @@ public class FavoriteFragment extends Fragment implements DrinksListener {
             final Bundle bundle = new Bundle();
             bundle.putParcelable("drink", (Parcelable) thisDrink);
             detailFragment.setArguments(bundle);
-            transaction.replace(R.id.nav_host_fragment,detailFragment);
             transaction.setCustomAnimations(R.animator.slide_in_right,0,0,R.animator.slide_in_left);
+            transaction.replace(R.id.nav_host_fragment,detailFragment);
             transaction.addToBackStack(null).commit();
 
         }

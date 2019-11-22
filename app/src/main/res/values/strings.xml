@@ -18,4 +18,6 @@
     <string name="logout">Logout</string>
     <string name="logIn">Log in</string>
     <string name="supp">You can suppress favorites by dragging them outside the screen</string>
+    <string name="start">Start</string>
+    <string name="stop">stop</string>
 </resources>
